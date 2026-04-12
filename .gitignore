@@ -1,7 +1,3 @@
-.vs/
-out/
-archive/
-
 # CMake local files
 CMakeUserPresets.json
 CMakeCache.txt
