@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contract Workflow Guide
+    url: https://github.com/yukke9265/Contract-Package-Workflow/blob/main/CONTRACT_WORKFLOW.md
+    about: Review the workflow, review gates, and role split before opening an issue.

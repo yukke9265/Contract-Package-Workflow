@@ -1,0 +1,84 @@
+name: Contract Package Request
+description: Propose a new contract package for a C++ component to be developed through the contract-first workflow.
+title: "[Contract] <component-name>"
+labels:
+  - contract
+  - proposal
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when a new C++ component should be introduced through a contract package.
+        Describe the public behavior, not the implementation internals.
+
+  - type: input
+    id: component_name
+    attributes:
+      label: Component name
+      description: Public component or interface name.
+      placeholder: BoundedQueue
+    validations:
+      required: true
+
+  - type: input
+    id: module_name
+    attributes:
+      label: Module name
+      description: Logical module or package name.
+      placeholder: containers
+    validations:
+      required: true
+
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Usage scenario
+      description: Describe the caller-facing scenario this component must support.
+      placeholder: A caller needs a fixed-capacity FIFO queue for integers without exceptions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: public_behavior
+    attributes:
+      label: Expected public behavior
+      description: Describe the observable API behavior, success cases, and important state transitions.
+      placeholder: |
+        - Initializes with a fixed capacity.
+        - Preserves FIFO order.
+        - Distinguishes empty, full, and not-initialized states.
+    validations:
+      required: true
+
+  - type: textarea
+    id: failure_model
+    attributes:
+      label: Failure model
+      description: Describe what failures the caller must be able to observe.
+      placeholder: |
+        - Invalid input returns a status code.
+        - Contract violations must not become undefined behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: Black-box criteria that must be testable from `tests/`.
+      placeholder: |
+        - Normal case succeeds.
+        - Boundary conditions are observable.
+        - Contract violations fail predictably.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: review_checklist
+    attributes:
+      label: Contract readiness checklist
+      options:
+        - label: Ownership and lifetime expectations are known.
+        - label: Invalidation rules are known or explicitly not applicable.
+        - label: Error or status reporting expectations are known.
+        - label: Acceptance criteria are black-box and observable.

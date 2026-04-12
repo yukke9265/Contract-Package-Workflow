@@ -1,0 +1,59 @@
+name: Workflow Improvement
+description: Propose an improvement to the contract-package workflow, prompts, scripts, review gates, or documentation.
+title: "[Workflow] <short-summary>"
+labels:
+  - workflow
+  - improvement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for changes to the workflow itself rather than to a specific C++ component.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Target area
+      options:
+        - Contract template
+        - Custom agents or prompts
+        - Validation scripts
+        - CMake or build flow
+        - Documentation
+        - Review process
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: Current problem
+      description: What is hard, unclear, or unstable in the current workflow?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_change
+    attributes:
+      label: Proposed change
+      description: Describe the improvement in terms of workflow behavior, not just implementation details.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_outcome
+    attributes:
+      label: Expected outcome
+      description: What should improve for AI agents, human reviewers, or release quality?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Expected impact
+      options:
+        - label: Affects contract authoring.
+        - label: Affects implementation from frozen contracts.
+        - label: Affects build or test execution.
+        - label: Affects review gates or release readiness.
