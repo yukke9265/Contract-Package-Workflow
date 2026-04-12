@@ -11,10 +11,6 @@ This repository packages a reusable workflow for contract-first C++ development.
 
 - [ContractPackage_Template](ContractPackage_Template): Generic template for creating a new contract package.
   [ContractPackage_Template](ContractPackage_Template): 新しい契約パッケージを作るための汎用テンプレート。
-- [ContractPackage_BoundedQueue](ContractPackage_BoundedQueue): A sample contract package validated through build and test.
-  [ContractPackage_BoundedQueue](ContractPackage_BoundedQueue): 実際に build と test まで通したサンプル契約パッケージ。
-- [ContractPackage_Utf8LineReader](ContractPackage_Utf8LineReader): A sample contract package for a UTF-8 line reader component.
-  [ContractPackage_Utf8LineReader](ContractPackage_Utf8LineReader): UTF-8 行読み取りコンポーネントのサンプル契約パッケージ。
 - [scripts](scripts): Scripts for package creation, validation, environment setup, and build/test execution.
   [scripts](scripts): 契約パッケージ生成、検証、環境初期化、build/test 実行スクリプト。
 - [CONTRACT_WORKFLOW.md](CONTRACT_WORKFLOW.md): Detailed workflow, role split, and review gates.
