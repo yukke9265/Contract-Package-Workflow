@@ -95,18 +95,11 @@ Visual Studio 開発環境込みで build/test する:
 ## Use From VS Code / VS Code から使う
 
 - prompt: New Contract Package
-- prompt: New Contract Package
-- prompt: Implement From Contract Package
 - prompt: Implement From Contract Package
 - prompt: Init CMake DevShell
-- prompt: Init CMake DevShell
-- prompt: Build And Test CMake Preset
 - prompt: Build And Test CMake Preset
 - task: CMake: Build x64 Debug
-- task: CMake: Build x64 Debug
 - task: CMake: Test x64 Debug
-- task: CMake: Test x64 Debug
-- task: CMake: Build And Test x64 Debug
 - task: CMake: Build And Test x64 Debug
 
 ## More Details / 詳細ドキュメント
