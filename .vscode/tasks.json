@@ -1,0 +1,56 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Build x64 Debug",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/Invoke-CMakePreset.ps1",
+                "-Preset",
+                "x64-debug",
+                "-Build"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Test x64 Debug",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/Invoke-CMakePreset.ps1",
+                "-Preset",
+                "x64-debug",
+                "-Test"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Build And Test x64 Debug",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/Invoke-CMakePreset.ps1",
+                "-Preset",
+                "x64-debug",
+                "-Build",
+                "-Test"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

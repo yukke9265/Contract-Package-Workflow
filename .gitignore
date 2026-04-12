@@ -1,0 +1,21 @@
+.vs/
+out/
+archive/
+
+# CMake local files
+CMakeUserPresets.json
+CMakeCache.txt
+CTestTestfile.cmake
+cmake_install.cmake
+
+# Build artifacts
+*.obj
+*.o
+*.pdb
+*.ilk
+*.lib
+*.a
+*.exe
+*.dll
+*.so
+*.dylib
