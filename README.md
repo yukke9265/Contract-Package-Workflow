@@ -81,6 +81,13 @@ Validate a contract package:
 ./scripts/Validate-ContractPackage.ps1 -PackagePath ./ContractPackage_MyComponent
 ```
 
+Initialize the Visual Studio CMake environment (run once per shell session before build/test):
+Visual Studio CMake 環境を初期化する（ビルド・テスト前にセッションごとに一度実行する）:
+
+```powershell
+. ./scripts/Initialize-VsCMakeEnv.ps1
+```
+
 Build and test with the Visual Studio C++ environment initialized:
 Visual Studio 開発環境込みで build/test する:
 
