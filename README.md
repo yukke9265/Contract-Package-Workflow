@@ -95,6 +95,38 @@ Visual Studio 開発環境込みで build/test する:
 ./scripts/Invoke-CMakePreset.ps1 -Preset x64-debug -Build -Test
 ```
 
+Build a single package directly from its own folder:
+パッケージ単体を、そのパッケージの CMakeLists から直接 build する:
+
+```powershell
+. ./scripts/Initialize-VsCMakeEnv.ps1
+cmake -S ./ContractPackage_FileExistsProbe -B ./out/build/fileexistsprobe -G Ninja -D CMAKE_BUILD_TYPE=Debug
+cmake --build ./out/build/fileexistsprobe --config Debug
+ctest --test-dir ./out/build/fileexistsprobe --output-on-failure -C Debug
+```
+
+## Package-Local CMake / パッケージ単位の CMake
+
+Each contract package owns its own CMake target definitions, while the workspace root only aggregates packages with `add_subdirectory(...)`.
+
+各契約パッケージは自分の CMake ターゲット定義を持ち、ワークスペース直下は `add_subdirectory(...)` でそれらを集約するだけにする。
+
+Use this structure when you want both isolated package development and a single workspace-level build.
+
+この構成にすると、パッケージ単体での開発と、ワークスペース全体の一括 build の両方を保てる。
+
+When you add a new package:
+新しいパッケージを追加するときの流れ:
+
+1. Generate the package from [ContractPackage_Template](ContractPackage_Template).
+  [ContractPackage_Template](ContractPackage_Template) からパッケージを生成する。
+2. Freeze `contract/` and `include/`, then implement the `.cpp` in that package.
+  `contract/` と `include/` を凍結して、そのパッケージ内で `.cpp` を実装する。
+3. Add `add_subdirectory(ContractPackage_YourName)` to [CMakeLists.txt](CMakeLists.txt) so the root preset build includes it.
+  ルートの preset build に含めるため、[CMakeLists.txt](CMakeLists.txt) に `add_subdirectory(ContractPackage_YourName)` を追加する。
+4. Use the package-local `CMakeLists.txt` when you want to configure and test only that package.
+  そのパッケージだけを configure/test したいときは、パッケージ内の `CMakeLists.txt` を使う。
+
 ## Use From VS Code / VS Code から使う
 
 - prompt: New Contract Package

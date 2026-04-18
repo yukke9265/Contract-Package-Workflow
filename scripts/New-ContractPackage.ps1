@@ -26,6 +26,50 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+function New-PackageReadmeContent {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$PackageName,
+
+        [Parameter(Mandatory = $true)]
+        [string]$InterfaceName,
+
+        [Parameter(Mandatory = $true)]
+        [string]$ModuleName,
+
+        [Parameter(Mandatory = $true)]
+        [string]$PublicHeader,
+
+        [Parameter(Mandatory = $true)]
+        [string]$ImplementationFile,
+
+        [Parameter(Mandatory = $true)]
+        [string]$StatusType
+    )
+
+    $templatePath = Join-Path $PSScriptRoot 'templates\PackageReadme.ja.template.md'
+    if (-not (Test-Path $templatePath)) {
+        throw "Package README template not found: $templatePath"
+    }
+
+    $template = Get-Content -Path $templatePath -Raw -Encoding utf8
+
+    $replacements = [ordered]@{
+        '[PackageName]' = $PackageName
+        '[InterfaceName]' = $InterfaceName
+        '[ModuleName]' = $ModuleName
+        '[PublicHeader]' = $PublicHeader
+        '[ImplementationFile]' = $ImplementationFile
+        '[StatusType]' = $StatusType
+    }
+
+    foreach ($pair in $replacements.GetEnumerator()) {
+        $template = $template.Replace($pair.Key, $pair.Value)
+    }
+
+    return $template
+}
+
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot '..')
 $templatePath = Join-Path $repoRoot 'ContractPackage_Template'
 
@@ -85,5 +129,15 @@ Rename-Item -Path $headerTemplate -NewName $PublicHeader
 $testTemplate = Join-Path $destinationPath 'tests\acceptance_test.cpp'
 $testDestinationName = ($InterfaceName + '_acceptance.cpp')
 Rename-Item -Path $testTemplate -NewName $testDestinationName
+
+$packageReadmePath = Join-Path $destinationPath 'README.md'
+$packageReadme = New-PackageReadmeContent `
+    -PackageName $PackageName `
+    -InterfaceName $InterfaceName `
+    -ModuleName $ModuleName `
+    -PublicHeader $PublicHeader `
+    -ImplementationFile $ImplementationFile `
+    -StatusType $StatusType
+Set-Content -Path $packageReadmePath -Value $packageReadme -Encoding utf8
 
 Write-Output "Created contract package: $destinationPath"

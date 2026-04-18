@@ -15,3 +15,10 @@ cmake_install.cmake
 *.dll
 *.so
 *.dylib
+
+# test package
+ContractPackage_FileExistsProbe
+ContractPackage_CsvHeaderReader
+
+# generated files
+out

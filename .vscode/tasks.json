@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "CMake: Build x64 Debug",
-            "type": "shell",
+            "type": "process",
             "command": "powershell",
             "args": [
                 "-NoProfile",
@@ -20,7 +20,7 @@
         },
         {
             "label": "CMake: Test x64 Debug",
-            "type": "shell",
+            "type": "process",
             "command": "powershell",
             "args": [
                 "-NoProfile",
@@ -37,7 +37,7 @@
         },
         {
             "label": "CMake: Build And Test x64 Debug",
-            "type": "shell",
+            "type": "process",
             "command": "powershell",
             "args": [
                 "-NoProfile",
